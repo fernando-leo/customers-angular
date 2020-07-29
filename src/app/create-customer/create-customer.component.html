@@ -1,0 +1,36 @@
+<h3>Cadastrar cliente</h3>
+<div [hidden]="submitted" style="width: 400px ;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome </label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="customer.name" name="name">
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Telefone </label>
+      <input type="number" class="form-control" id="phone" [(ngModel)]="customer.phone" name="phone">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Endereço </label>
+      <input type="text" class="form-control" id="address" [(ngModel)]="customer.address" name="address">
+    </div>
+
+
+    <div class="form-group" style="margin-bottom: 20px">
+      <label>Pessoa física </label>
+      <input id="naturalPerson" style="margin-left: 20px" type="radio" name="customerType" value="0" [checked]="customer.customerType == 0" [(ngModel)]="customer.customerType" />
+      <label style="margin-left: 20px">Pessoa jurídica </label>
+      <input id="legalPerson" style="margin-left: 20px" type="radio" name="customerType" value="1" [checked]="customer.customerType == 1" [(ngModel)]="customer.customerType" />
+    </div>
+
+    <div class="form-group" [ngSwitch]="customer.customerType">
+      <label for="cpf" *ngSwitchCase="0">CPF </label>
+      <input type="text" *ngSwitchCase="0" class="form-control" id="cpf" [(ngModel)]="customer.document" name="cpf" >
+      <label for="cnpj" *ngSwitchCase="1">CNPJ </label>
+      <input type="text" *ngSwitchCase="1" class="form-control" id="cnpj" [(ngModel)]="customer.document" name="cnpj">
+    </div>
+
+    <button type="submit" class="btn btn-success">Enviar</button>
+  </form>
+</div>
